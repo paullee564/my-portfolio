@@ -1,32 +1,41 @@
-# React + TypeScript + Vite
+# Paul Lee — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Personal portfolio for Paul Lee, a Computer Science student at the University of Virginia seeking a Summer 2027 software engineering internship.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **React 19** with function components and hooks
+- **TypeScript 6** in strict mode (plus `noUncheckedIndexedAccess`)
+- **Vite 8** for the dev server and production bundle
+- **Tailwind CSS v4**, configured in CSS via `@theme` (no `tailwind.config.js`)
+- **oxlint** with the `react`, `typescript`, and `jsx-a11y` plugins
 
-## React Compiler
+No UI or animation libraries — the design system lives in `src/index.css`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting started
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev       # local dev server with hot module replacement
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Scripts
+
+| Command           | What it does                                                  |
+| ----------------- | ------------------------------------------------------------- |
+| `npm run dev`     | Start the Vite dev server                                     |
+| `npm run lint`    | Lint with oxlint, including static accessibility checks       |
+| `npm run build`   | Type-check every project (`tsc -b`), then bundle into `dist/` |
+| `npm run preview` | Serve the production build locally                            |
+
+## Project structure
+
+```
+index.html          Entry document; loads fonts and src/main.tsx
+public/             Copied to dist/ as-is (favicon, résumé PDF)
+src/main.tsx        Mounts <App /> into #root
+src/App.tsx         Page composition
+src/index.css       Tailwind import, design tokens, custom utilities
+```
+
+Files in `public/` keep their exact names and are referenced by absolute path (`/Paul-Lee-Resume.pdf`). Files imported from `src/` are processed by Vite and given content-hashed names for caching.
