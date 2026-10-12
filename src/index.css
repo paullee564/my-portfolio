@@ -1,1 +1,72 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Nunito Sans", system-ui, sans-serif;
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-mono: "SFMono-Regular", Consolas, monospace;
+  --color-cream: #edeef2;
+  --color-ink: #1a1a1a;
+  --color-heading: #253f53;
+  --color-coral: #e96a4e;
+  --color-butter: #f4c95d;
+}
+
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; min-height: 100vh; text-rendering: optimizeLegibility; }
+::selection { background: #e96a4e; color: white; }
+a, button { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible { outline: 2px solid #e96a4e; outline-offset: 4px; }
+
+@utility bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+@utility tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.75rem;
+  box-shadow: 0 1px 0 rgb(0 0 0 / 0.04);
+}
+
+@utility project-tile {
+  position: relative;
+  overflow: hidden;
+  min-height: 30rem;
+  border-radius: 1.75rem;
+  padding: 2rem;
+  transition: transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms ease;
+}
+
+@utility pill-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.8rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+@utility nav-link {
+  position: relative;
+  transition: color 200ms ease;
+}
+
+.nav-link:hover { color: #e96a4e; }
+.pill-button:hover { transform: translateY(-2px); }
+.project-tile:hover { transform: translateY(-5px); box-shadow: 0 24px 50px rgb(27 35 50 / 0.12); }
+.section-kicker { margin-bottom: 0.75rem; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #e96a4e; }
+
+@media (max-width: 767px) {
+  .bento-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .project-tile { min-height: 26rem; padding: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+}
