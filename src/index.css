@@ -3,7 +3,7 @@
 
 @theme {
   --font-sans: "Nunito Sans", system-ui, sans-serif;
-  --font-display: "Instrument Serif", Georgia, serif;
+  --font-display: "Newsreader", Georgia, serif;
   --font-mono: "SFMono-Regular", Consolas, monospace;
   --color-cream: #edeef2;
   --color-ink: #1a1a1a;
@@ -34,9 +34,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid #e96a4e; outline-offs
 @utility project-tile {
   position: relative;
   overflow: hidden;
-  min-height: 30rem;
   border-radius: 1.75rem;
-  padding: 2rem;
+  padding: 1.75rem;
   transition: transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms ease;
 }
 
@@ -63,10 +62,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid #e96a4e; outline-offs
 
 @media (max-width: 767px) {
   .bento-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-  .project-tile { min-height: 26rem; padding: 1.5rem; }
+  .project-tile { padding: 1.5rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }
+
+/* Emphasis in display headings is carried by color, not italics, for readability. */
+.font-display em { font-style: normal; }
