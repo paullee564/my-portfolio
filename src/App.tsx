@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react'
 
-type IconName = 'arrow' | 'github' | 'linkedin' | 'mail' | 'moon' | 'sun'
+type IconName = 'arrow' | 'github' | 'linkedin' | 'mail' | 'moon' | 'music' | 'sun'
 
 interface Project {
   title: string
@@ -68,6 +68,7 @@ function Icon({ name, className = 'size-5' }: { name: IconName; className?: stri
     linkedin: <><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z" /><path d="M2 9h4v12H2zM4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" /></>,
     mail: <><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-10 6L2 7" /></>,
     moon: <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z" />,
+    music: <><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></>,
     sun: <><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41" /></>,
   }
 
@@ -102,7 +103,7 @@ function App() {
           <a href="#work" className="nav-link">Work</a>
           <a href="#experience" className="nav-link">Experience</a>
           <a href="#personal" className="nav-link">Personal</a>
-          <a href="#reading" className="nav-link">Reading</a>
+          <a href="#favorites" className="nav-link">Favorites</a>
         </nav>
         <a href="mailto:paullee1606@gmail.com" className="group flex items-center gap-2 rounded-full border border-ink/15 px-4 py-2 text-sm font-semibold transition hover:bg-ink hover:text-white dark:border-white/20 dark:hover:bg-white dark:hover:text-ink">
           Say hello <Icon name="arrow" className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -110,7 +111,7 @@ function App() {
       </header>
 
       <main id="top" className="mx-auto max-w-7xl px-5 pb-24 sm:px-8 lg:px-10">
-        <section className="grid items-center gap-8 pb-10 pt-4 sm:pb-14 sm:pt-8 lg:grid-cols-[1fr_1.1fr] lg:gap-12">
+        <section className="grid items-center gap-8 pb-10 pt-4 sm:pb-14 sm:pt-8 lg:grid-cols-[1.15fr_.85fr] lg:gap-14">
           <div>
             <p className="mb-5 font-mono text-xs font-semibold uppercase tracking-[.18em] text-coral">Software engineer · UVA CS · Class of 2028</p>
             <h1 className="font-display text-[clamp(2.5rem,5.5vw,4.75rem)] font-medium leading-[1.04] tracking-[-.02em] text-heading dark:text-[#f5f1ea]">
@@ -122,7 +123,7 @@ function App() {
               <a href="/Paul-Lee-Resume.pdf" target="_blank" rel="noreferrer" className="pill-button border border-ink/20 dark:border-white/20">Résumé</a>
             </div>
           </div>
-          <img src="/images/snow-day.jpg" alt="Paul, in a white hoodie, and a friend on a mountain road during a snowfall" width={1400} height={1050} fetchPriority="high" className="tile aspect-[4/3] w-full object-cover" />
+          <img src="/images/paullee.jpg" alt="Paul in a white hoodie on a mountain trail during a snowfall" width={965} height={1146} fetchPriority="high" className="tile aspect-[4/3] w-full object-cover object-[center_30%] lg:aspect-[5/6]" />
         </section>
 
         <section id="about" className="bento-grid scroll-mt-6">
@@ -210,7 +211,7 @@ function App() {
                 <Label light>On the job</Label>
                 <h3 className="mt-4 font-display text-3xl leading-tight">Driving for UTS</h3>
                 <p className="mt-3 leading-7 text-white/75">
-                  I drive a transit bus for University Transit Service, UVA&apos;s bus system, getting students and staff around Grounds safely and on schedule.
+                  Fun fact: I hold a commercial driver&apos;s license, so my part-time job is driving a transit bus for University Transit Service, UVA&apos;s bus system.
                 </p>
               </div>
             </article>
@@ -246,13 +247,29 @@ function App() {
           </div>
         </section>
 
-        <section id="reading" className="grid scroll-mt-8 items-center gap-8 border-y border-ink/10 py-10 dark:border-white/10 sm:grid-cols-[auto_1fr] sm:gap-12 sm:py-12">
-          <img src="/images/mistborn-cover.jpg" alt="Cover of Mistborn: The Final Empire by Brandon Sanderson" className="mx-auto w-32 rotate-[-2deg] shadow-2xl shadow-black/20 sm:mx-0 sm:w-36" loading="lazy" />
-          <div className="max-w-2xl">
-            <p className="section-kicker">What I&apos;m reading</p>
-            <h2 className="font-display text-3xl leading-tight tracking-tight sm:text-4xl">Mistborn: The Final Empire</h2>
-            <p className="mt-2 text-lg text-ink/65 dark:text-white/65">Brandon Sanderson</p>
-            <p className="mt-4 max-w-xl leading-7 text-ink/60 dark:text-white/60">A fantasy favorite full of clever world-building, high-stakes plans, and a magic system that rewards close attention.</p>
+        <section id="favorites" aria-labelledby="favorites-heading" className="scroll-mt-8 border-y border-ink/10 py-10 dark:border-white/10 sm:py-12">
+          <p className="section-kicker">Currently into</p>
+          <h2 id="favorites-heading" className="font-display text-3xl leading-tight tracking-tight sm:text-4xl">A book and a song on repeat.</h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <article className="flex items-center gap-6">
+              <img src="/images/mistborn-cover.jpg" alt="Cover of Mistborn: The Final Empire by Brandon Sanderson" className="w-24 shrink-0 rotate-[-2deg] shadow-xl shadow-black/20 sm:w-28" loading="lazy" />
+              <div>
+                <p className="font-mono text-[10px] font-semibold uppercase tracking-widest text-ink/55 dark:text-white/55">Reading</p>
+                <h3 className="mt-1 font-display text-2xl leading-tight">Mistborn: The Final Empire</h3>
+                <p className="text-ink/65 dark:text-white/65">Brandon Sanderson</p>
+                <p className="mt-2 text-sm leading-6 text-ink/60 dark:text-white/60">A fantasy favorite full of clever world-building, high-stakes plans, and a magic system that rewards close attention.</p>
+              </div>
+            </article>
+            <article className="tile flex items-center gap-6 bg-[#1b2332] p-6 text-white">
+              <span className="grid size-24 shrink-0 place-items-center rounded-2xl bg-butter text-[#1b2332] sm:size-28">
+                <Icon name="music" className="size-10" />
+              </span>
+              <div>
+                <p className="font-mono text-[10px] font-semibold uppercase tracking-widest text-white/60">Favorite song</p>
+                <h3 className="mt-1 font-display text-2xl leading-tight">True Romance</h3>
+                <p className="text-white/70">Citizens!</p>
+              </div>
+            </article>
           </div>
         </section>
 
