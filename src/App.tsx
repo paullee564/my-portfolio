@@ -12,11 +12,9 @@ interface Project {
   dark: boolean
 }
 
-interface PersonalDetail {
-  eyebrow: string
-  title: string
-  description: string
-  accent: string
+interface Hobby {
+  name: string
+  detail: string
 }
 
 const projects: Project[] = [
@@ -55,27 +53,12 @@ const stack = [
   'Agentic AI', 'MCP', 'CI/CD', 'REST APIs',
 ]
 
-// Personalize these cards with the hobbies, communities, and interests that
-// you would be excited to talk about in an interview.
-const personalDetails: PersonalDetail[] = [
-  {
-    eyebrow: 'Away from the screen',
-    title: 'Add a hobby',
-    description: 'Share an activity that helps you recharge, compete, create, or spend time with other people.',
-    accent: '#f4c95d',
-  },
-  {
-    eyebrow: 'Always curious about',
-    title: 'Add an interest',
-    description: 'This could be music, sports, design, film, history, entrepreneurship, or anything you explore for fun.',
-    accent: '#b9ceff',
-  },
-  {
-    eyebrow: 'Part of my world',
-    title: 'Add a community',
-    description: 'Mention a club, team, volunteer group, cultural community, or place that has shaped who you are.',
-    accent: '#e96a4e',
-  },
+const hobbies: Hobby[] = [
+  { name: 'Running', detail: 'Road miles and trails whenever I can.' },
+  { name: 'Baking', detail: 'Trying new recipes and sharing the results.' },
+  { name: 'Bodybuilding', detail: 'Training keeps me consistent and goal-oriented.' },
+  { name: 'Reading', detail: 'Fantasy is my favorite way to unwind.' },
+  { name: 'Rubik’s cube', detail: 'A small puzzle I keep coming back to.' },
 ]
 
 function Icon({ name, className = 'size-5' }: { name: IconName; className?: string }) {
@@ -119,6 +102,7 @@ function App() {
           <a href="#work" className="nav-link">Work</a>
           <a href="#experience" className="nav-link">Experience</a>
           <a href="#personal" className="nav-link">Personal</a>
+          <a href="#reading" className="nav-link">Reading</a>
         </nav>
         <a href="mailto:paullee1606@gmail.com" className="group flex items-center gap-2 rounded-full border border-ink/15 px-4 py-2 text-sm font-semibold transition hover:bg-ink hover:text-white dark:border-white/20 dark:hover:bg-white dark:hover:text-ink">
           Say hello <Icon name="arrow" className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -134,7 +118,10 @@ function App() {
             </h1>
           </div>
           <div className="mt-12 self-end lg:mb-5 lg:mt-0">
-            <p className="max-w-md text-lg leading-8 text-ink/70 dark:text-white/70">I&apos;m Paul, a computer science student exploring the intersection of full-stack products, developer tools, and agentic AI.</p>
+            <div className="flex items-center gap-5">
+              <img src="/images/paul-portrait.jpg" alt="Paul in Charlottesville" className="size-28 shrink-0 rounded-full object-cover sm:size-36" />
+              <p className="max-w-md text-lg leading-8 text-ink/70 dark:text-white/70">I&apos;m Paul, a computer science student exploring the intersection of full-stack products, developer tools, and agentic AI.</p>
+            </div>
             <div className="mt-7 flex flex-wrap gap-3">
               <a href="#work" className="pill-button bg-ink text-white dark:bg-[#f5f1ea] dark:text-ink">See my work <Icon name="arrow" className="size-4" /></a>
               <a href="/Paul-Lee-Resume.pdf" target="_blank" className="pill-button border border-ink/20 dark:border-white/20">Résumé</a>
@@ -211,37 +198,56 @@ function App() {
         </section>
 
         <section id="personal" className="scroll-mt-8 py-28 sm:py-36">
-          <div className="mb-12 grid gap-6 lg:grid-cols-[1fr_.7fr] lg:items-end">
-            <div>
-              <p className="section-kicker">Outside the editor</p>
-              <h2 className="max-w-3xl font-display text-5xl leading-[.95] tracking-tight sm:text-7xl">
-                There&apos;s more to me than <em className="text-coral">the code.</em>
-              </h2>
-            </div>
-            <p className="max-w-md text-base leading-7 text-ink/60 dark:text-white/60 lg:justify-self-end">
-              The interests, people, and experiences outside software that keep me grounded and shape how I work with others.
+          <div className="mb-10 max-w-3xl">
+            <p className="section-kicker">Outside the editor</p>
+            <h2 className="font-display text-5xl leading-[.95] tracking-tight sm:text-7xl">
+              A life beyond <em className="text-coral">the code.</em>
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-7 text-ink/60 dark:text-white/60">
+              I make time for movement, good food, a challenging puzzle, and a few chapters before bed.
             </p>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-3">
-            {personalDetails.map((detail, index) => (
-              <article
-                key={detail.eyebrow}
-                className="tile group flex min-h-80 flex-col justify-between p-7 text-[#1b2332] sm:p-8"
-                style={{ backgroundColor: detail.accent, color: index === 2 ? '#ffffff' : '#1b2332' }}
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[.14em] opacity-60">
-                    {detail.eyebrow}
-                  </span>
-                  <span className="font-display text-2xl opacity-40">0{index + 1}</span>
-                </div>
-                <div>
-                  <h3 className="font-display text-4xl leading-none tracking-tight">{detail.title}</h3>
-                  <p className="mt-4 text-sm leading-6 opacity-65">{detail.description}</p>
-                </div>
-              </article>
-            ))}
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-12">
+            <figure className="tile relative min-h-72 sm:row-span-2 lg:col-span-5">
+              <img src="/images/baking.jpg" alt="Freshly baked chocolate-glazed donuts" className="absolute inset-0 size-full object-cover" loading="lazy" />
+              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-6 pb-6 pt-20 text-white">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-white/70">From the kitchen</span>
+                <p className="mt-2 font-display text-3xl">Baking, then sharing.</p>
+              </figcaption>
+            </figure>
+            <figure className="tile relative min-h-72 lg:col-span-4">
+              <img src="/images/lake.jpg" alt="A mountain lake framed by evergreens" className="absolute inset-0 size-full object-cover" loading="lazy" />
+              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-6 pb-6 pt-20 text-white">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-white/70">Out of office</span>
+                <p className="mt-2 font-display text-3xl">More time outside.</p>
+              </figcaption>
+            </figure>
+            <figure className="tile relative min-h-72 lg:col-span-3">
+              <img src="/images/caving.jpg" alt="A caving trip with a friend" className="absolute inset-0 size-full object-cover" loading="lazy" />
+              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-6 pb-6 pt-20 text-white">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-white/70">A little adventure</span>
+                <p className="mt-2 font-display text-3xl">Always up to explore.</p>
+              </figcaption>
+            </figure>
+            <div className="grid content-center gap-4 border-y border-ink/10 py-6 dark:border-white/10 sm:col-span-2 sm:grid-cols-2 lg:col-span-7 lg:grid-cols-3">
+              {hobbies.map((hobby) => (
+                <article key={hobby.name}>
+                  <h3 className="font-display text-2xl">{hobby.name}</h3>
+                  <p className="mt-1 text-sm leading-6 text-ink/60 dark:text-white/60">{hobby.detail}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="reading" className="grid scroll-mt-8 items-center gap-10 border-y border-ink/10 py-16 dark:border-white/10 sm:grid-cols-[auto_1fr] sm:gap-16 sm:py-20">
+          <img src="/images/mistborn-cover.jpg" alt="Cover of Mistborn: The Final Empire by Brandon Sanderson" className="mx-auto w-44 rotate-[-2deg] shadow-2xl shadow-black/20 sm:mx-0 sm:w-52" loading="lazy" />
+          <div className="max-w-2xl">
+            <p className="section-kicker">What I&apos;m reading</p>
+            <h2 className="font-display text-5xl leading-none tracking-tight sm:text-6xl">Mistborn: The Final Empire</h2>
+            <p className="mt-3 text-lg text-ink/65 dark:text-white/65">Brandon Sanderson</p>
+            <p className="mt-5 max-w-xl leading-7 text-ink/60 dark:text-white/60">A fantasy favorite full of clever world-building, high-stakes plans, and a magic system that rewards close attention.</p>
           </div>
         </section>
 
