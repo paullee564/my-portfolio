@@ -31,11 +31,25 @@ npm run dev       # local dev server with hot module replacement
 ## Project structure
 
 ```
-index.html          Entry document; loads fonts and src/main.tsx
-public/             Copied to dist/ as-is (favicon, résumé PDF)
-src/main.tsx        Mounts <App /> into #root
-src/App.tsx         Page composition
-src/index.css       Tailwind import, design tokens, custom utilities
+index.html                     Entry document; loads fonts and src/main.tsx
+public/                        Copied to dist/ as-is (favicon, résumé PDF, images)
+src/main.tsx                   Mounts <App /> into #root
+src/App.tsx                    Puts the sections in order
+src/content.ts                 All editable content: projects, roles, favorites…
+src/sections/                  One component per page section
+src/components/ui.tsx          Shared pieces: Icon, ArrowBadge, StopHeading
+src/components/ProjectVisual.tsx  Illustrations for project cards
+src/hooks.ts                   Dark mode and scroll-reveal hooks
+src/index.css                  Tailwind import, design tokens, custom utilities
 ```
+
+## Updating content
+
+Almost every update is an edit to `src/content.ts`, then commit and push.
+
+- **Résumé:** replace `public/Paul-Lee-Resume.pdf`, keeping the exact filename.
+- **New project:** add an object to `projects`. Start with `visual: { kind: 'steps', steps: [...] }`; mark one project `featured: true`.
+- **Book or song:** edit `nowReading` or `onRepeat`. Put a new cover in `public/images/`, or leave `cover` out for a placeholder.
+- **Experience:** edit `roles`. The first role gets the large card with `results` tiles.
 
 Files in `public/` keep their exact names and are referenced by absolute path (`/Paul-Lee-Resume.pdf`). Files imported from `src/` are processed by Vite and given content-hashed names for caching.
